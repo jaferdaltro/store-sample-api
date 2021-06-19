@@ -7,4 +7,7 @@ class Coupon < ApplicationRecord
 
   enum status: {active: 1, inactive: 2}
   
+  include Paginatable
+
+  
 end
