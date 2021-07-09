@@ -1,5 +1,5 @@
-json.categories do
-  json.array! @loading_service.records, :id, :name
+json.licenses do
+  json.array! @loading_service.records, :id, :key, :platform, :status, :game_id
 end
 
 json.meta do 

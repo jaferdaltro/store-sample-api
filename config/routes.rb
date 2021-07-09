@@ -6,6 +6,10 @@ Rails.application.routes.draw do
       get "home" => "home#index"
       resources :categories
       resources :system_requirements
+      resources :products
+      resources :games, only: [], shallow: true do
+        resources :licenses
+      end
     end
   end
   namespace :storefront do

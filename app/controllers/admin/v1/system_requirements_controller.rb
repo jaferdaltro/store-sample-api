@@ -3,7 +3,9 @@ module Admin::V1
     before_action :load_system_requirement, only: [:show, :update, :destroy]
 
     def index
-      @system_requirements = SystemRequirement.all
+      permitted = params.permit({ search: :name }, { order: {} }, :page, :length)
+      @loading_service = Admin::ModelLoadingService.new(SystemRequirement.all, permitted)
+      @loading_service.call
     end
 
     def show; end
@@ -23,10 +25,11 @@ module Admin::V1
     def destroy
       @system_requirement.destroy!
     rescue
-      ender_error(fields: @system_requirement.errors.messages)
+      render_error(fields: @system_requirement.errors.messages)
     end
 
     private
+
 
     def save_system_requirement!
       @system_requirement.save!

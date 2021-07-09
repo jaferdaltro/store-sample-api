@@ -9,5 +9,5 @@ RSpec.describe Game, type: :model do
   it { is_expected.to belong_to :system_requirement }
   it { is_expected.to have_one :product }
 
-  it_behaves_like "paginatable concern", :game
+  it_has_behavior_of "paginatable concern", :game
 end
